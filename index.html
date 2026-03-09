@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Link Loader</title>
+</head>
+<body>
+    <h3>লিংকটি ব্যাকগ্রাউন্ডে লোড হচ্ছে...</h3>
+    <p id="status"></p>
+
+    <script>
+        const targetUrl = "https://omg10.com/4/10451492";
+        const totalLoads = 100; // 500;
+        let loadedCount = 0;
+
+        for (let i = 0; i < totalLoads; i++) {
+            const ifrm = document.createElement("iframe");
+            ifrm.setAttribute("src", targetUrl);
+            ifrm.style.width = "1px";
+            ifrm.style.height = "1px";
+            ifrm.style.opacity = "0";
+            ifrm.style.position = "absolute";
+            
+            document.body.appendChild(ifrm);
+            loadedCount++;
+            document.getElementById("status").innerText = loadedCount + " বার লোড হয়েছে।";
+        }
+    </script>
+</body>
+</html>
