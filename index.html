@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Link Loader</title>
+    <title>Auto Link Opener</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+        #counter { font-size: 24px; font-weight: bold; color: #007bff; }
+    </style>
 </head>
 <body>
-    <h3>লিংকটি ব্যাকগ্রাউন্ডে লোড হচ্ছে...</h3>
-    <p id="status"></p>
+    <h1>Processing Requests...</h1>
+    <div id="counter">Opened: 0</div>
+    <p>Please enable "Pop-ups" in your browser settings to allow this script to work.</p>
 
     <script>
-        const targetUrl = "https://omg10.com/4/10451492";
-        const totalLoads = 100; // 500;
-        let loadedCount = 0;
+        const targetUrl = "https://omg10.com/4/10492846";
+        const totalOpenings = 100; // Change this to 500 if needed
+        let currentCount = 1;
 
-        for (let i = 0; i < totalLoads; i++) {
-            const ifrm = document.createElement("iframe");
-            ifrm.setAttribute("src", targetUrl);
-            ifrm.style.width = "1px";
-            ifrm.style.height = "1px";
-            ifrm.style.opacity = "0";
-            ifrm.style.position = "absolute";
-            
-            document.body.appendChild(ifrm);
-            loadedCount++;
-            document.getElementById("status").innerText = loadedCount + " বার লোড হয়েছে।";
-        }
+        const opener = setInterval(() => {
+            if (currentCount < totalOpenings) {
+                window.open(targetUrl, '_blank');
+                currentCount++;
+                document.getElementById("counter").innerText = "Opened: " + currentCount;
+            } else {
+                clearInterval(opener);
+                document.querySelector('h1').innerText = "Task Completed!";
+            }
+        }, 1000); // Opens one link every 1 second
     </script>
 </body>
 </html>
